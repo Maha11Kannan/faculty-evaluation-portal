@@ -1,0 +1,86 @@
+/* Professional background and centering */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* Keeps everything within the page */
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The White Card from your images */
+.glass-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px; /* Matches the width in your screenshots */
+  text-align: left;
+}
+
+h2 {
+  text-align: center;
+  color: #1a202c;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* Input styling to match your images */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #f8fafc;
+}
+
+/* The Purple Button from your images */
+.primary-btn {
+  width: 100%;
+  padding: 15px;
+  background: #4c51bf; /* That specific purple/blue color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* The Orange Logout Button from your images */
+.logout-glow-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ff4d2d;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(255, 77, 45, 0.4);
+  cursor: pointer;
+}
