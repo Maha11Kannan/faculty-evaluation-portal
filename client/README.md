@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+🎓 Faculty Evaluation System (MERN Stack)
+A real-time, cloud-integrated platform designed to streamline the academic feedback process. This project allows students to evaluate faculty performance through a dynamic interface, while providing administrators with live data synchronization via the cloud.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🌟 Key Features & Novelty
+Dynamic Cloud Integration: Unlike static forms, this system leverages MongoDB Atlas for real-time data persistence and global accessibility.
 
-## Available Scripts
+Secure Environment Management: Utilizes dotenv to mask sensitive connection strings and API keys, ensuring industry-standard security practices.
 
-In the project directory, you can run:
+Restricted API Access: Backend is protected by a custom CORS policy that whitelists only the official React frontend, preventing unauthorized cross-origin requests.
 
-### `npm start`
+Responsive Dashboard: A wireframe-designed dashboard that provides clear visual analytics for faculty performance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🛠️ Technology Stack
+Frontend: React.js (Component-driven UI)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Backend: Node.js & Express.js (RESTful API Architecture)
 
-### `npm test`
+Database: MongoDB Atlas (NoSQL Cloud Cluster)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ODM: Mongoose (Schema Validation & Data Modeling)
 
-### `npm run build`
+Security: Dotenv & CORS Middleware
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🔄 Project Workflow
+The application follows a secure 4-step data lifecycle:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Client-Side: User interacts with the React frontend to submit feedback.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+API Gateway: Data is transmitted via an asynchronous POST request to the Express server.
 
-### `npm run eject`
+Security Layer: The server validates credentials from the .env file and checks the request origin.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Cloud Storage: Upon validation, the feedback is stored in the facultyDB collection within the mahalakshmikannan cluster.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+⚙️ Setup and Installation
+Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Bash
+git clone https://github.com/yourusername/faculty-evaluation.git
+Install dependencies (Run in both /client and /server folders):
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Bash
+npm install
+Configure Environment Variables: Create a .env file in the server root and add your URI: MONGO_URI=mongodb+srv://mahak:maha123@mahalakshmikannan.ygpvvxf.mongodb.net/facultyDB?retryWrites=true&w=majority
 
-## Learn More
+Launch the System:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Backend: node server.js (Wait for ✅ MongoDB Connected Successfully!)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Frontend: npm start
 
-### Code Splitting
+📈 Future Scope
+AI Sentiment Analysis: Implementing NLP to automatically categorize student comments as positive, neutral, or negative.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+PDF Reports: Automated generation of monthly performance reports for department heads.
