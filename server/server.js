@@ -5,12 +5,13 @@ const cors = require('cors');
 const Feedback = require('./models/Feedback');
 
 const app = express();
-
+app.get('/', (req, res) => {
+  res.send("Backend is officially running!");
+});
 app.use(cors({ 
-  origin: ["http://localhost:3000", /\.vercel\.app$/],
+  origin: "https://faculty-evaluation-portal.vercel.app", 
   credentials: true 
 }));
-
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)

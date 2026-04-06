@@ -5,7 +5,10 @@ const feedbackSchema = new mongoose.Schema({
   facultyName: { type: String, required: true },
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now } // This tracks when the student gave feedback
+  // FIX: Change this to 'date' to match your 17 old documents in MongoDB
+  date: { type: Date, default: Date.now } 
+}, { 
+  collection: 'feedbacks' // Force it to stay connected to your 17 documents
 });
 
 module.exports = mongoose.model('Feedback', feedbackSchema);
