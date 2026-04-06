@@ -5,10 +5,11 @@ const feedbackSchema = new mongoose.Schema({
   facultyName: { type: String, required: true },
   rating: { type: Number, required: true },
   comment: { type: String, required: true },
-  // FIX: Change this to 'date' to match your 17 old documents in MongoDB
+  // MATCH THE IMAGE: Use 'date' instead of 'createdAt'
   date: { type: Date, default: Date.now } 
 }, { 
-  collection: 'feedbacks' // Force it to stay connected to your 17 documents
+  // MATCH THE IMAGE: Use the lowercase plural name from your screenshot
+  collection: 'feedbacks' 
 });
 
 module.exports = mongoose.model('Feedback', feedbackSchema);
