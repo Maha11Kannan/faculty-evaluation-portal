@@ -1,41 +1,10 @@
-import React, { useState } from 'react';
-import Login from './Login';
-import FeedbackForm from './FeedbackForm';
-import FeedbackList from './FeedbackList';
-import './App.css';
+import axios from 'axios';
 
-function App() {
-  const [userRole, setUserRole] = useState(null);
-  const [userName, setUserName] = useState(""); 
+// This grabs the Render link you put in Vercel settings
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
-  const handleLoginSuccess = (role, name) => {
-    setUserRole(role);
-    setUserName(name); 
-  };
+const api = axios.create({
+  baseURL: API_URL,
+});
 
-  const handleLogout = () => {
-    setUserRole(null);
-    setUserName("");
-  };
-
-  return (
-    <div className="App">
-      {!userRole ? (
-        <Login onLoginSuccess={handleLoginSuccess} />
-      ) : (
-        <>
-          <button onClick={handleLogout} className="logout-glow-btn">
-            <i className="fas fa-sign-out-alt"></i> Logout
-          </button>
-          {userRole === 'student' ? (
-            <FeedbackForm />
-          ) : (
-            <FeedbackList facultyName={userName} />
-          )}
-        </>
-      )}
-    </div>
-  );
-}
-
-export default App;
+export default api;

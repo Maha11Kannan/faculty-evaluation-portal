@@ -1,86 +1,186 @@
-/* Professional background and centering */
+/* 1. VIEWPORT LOCK & BACKGROUND */
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; /* Fixes background scrolling */
+  background: linear-gradient(rgba(76, 81, 191, 0.75), rgba(76, 81, 191, 0.75)), 
+              url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=2000');
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(10px);
   font-family: 'Poppins', sans-serif;
-  overflow: hidden; /* Keeps everything within the page */
 }
 
+/* 2. FLEXBOX LAYOUT FOR CENTERING */
 .App {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between; 
   align-items: center;
 }
 
-/* The White Card from your images */
-.glass-card {
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+/* 3. BOLD PROJECT TITLE */
+.header-banner {
+  padding-top: 40px; 
+  text-align: center;
   width: 100%;
-  max-width: 450px; /* Matches the width in your screenshots */
+}
+
+.header-banner h1 {
+  color: #000;
+  font-size: 2.6rem;
+  font-weight: 900; 
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* 4. THE WHITE PORTAL BOX (SHARED ACROSS ALL PAGES) */
+.form-container, .glass-card {
+  background: white;
+  width: 850px;
+  max-height: 85vh; /* Maintains portal look */
+  padding: 35px 50px;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  display: flex;          /* Allows internal layout control */
+  flex-direction: column; /* Stacks header and list vertically */
+  overflow: hidden;       /* Keeps rounded corners clean */
+  position: relative;
+  margin: 0 auto;
+}
+
+/* 5. FACULTY DASHBOARD SPECIFIC WRAPPER */
+.faculty-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;           /* Fills the portal box */
+  overflow: hidden;       /* Keeps header fixed */
+}
+
+/* 6. INTERNAL SCROLLABLE AREA (DASHBOARD ONLY) */
+.feedback-list-container {
+  flex: 1;                /* Takes remaining space */
+  overflow-y: auto;       /* Enables vertical scrolling */
+  padding-right: 10px;    
+  margin-top: 15px;
+}
+
+/* CUSTOM SCROLLBAR */
+.feedback-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+.feedback-list-container::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+/* 7. INDIVIDUAL STUDENT FEEDBACK CARDS */
+.student-feedback-card {
+  background: #f8fafc;
+  border-left: 5px solid #585bc1; /* Purple accent bar */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   text-align: left;
 }
 
-h2 {
-  text-align: center;
-  color: #1a202c;
-  margin-bottom: 30px;
-  font-size: 28px;
+.rating-badge {
+  background: #fbbf24;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
-/* Input styling to match your images */
-.input-group {
-  margin-bottom: 20px;
+/* 8. SHARED FORM STYLING (STUDENT & LOGIN) */
+.welcome-header {
+  width: 850px;           
+  text-align: left;
+  color: white;
+  font-size: 2.5rem;    
+  margin-bottom: 15px; 
+  font-weight: 800;     
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .input-group label {
   display: block;
-  font-weight: 600;
+  font-weight: 700; 
+  margin-bottom: 10px;
   color: #4a5568;
-  margin-bottom: 8px;
-  font-size: 14px;
 }
 
 input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #cbd5e0;
-  border-radius: 8px;
-  font-size: 15px;
-  background: #f8fafc;
+  width: 100%; 
+  padding: 18px; 
+  border-radius: 12px;
+  background-color: #f1f5f9; 
+  border: none;
+  margin-bottom: 20px;
+  box-sizing: border-box; 
+  font-family: inherit;
 }
 
-/* The Purple Button from your images */
+textarea {
+  min-height: 120px;
+  resize: none; 
+}
+
 .primary-btn {
   width: 100%;
-  padding: 15px;
-  background: #4c51bf; /* That specific purple/blue color */
+  padding: 18px;
+  font-weight: 800;
+  background: #585bc1; 
   color: white;
+  border-radius: 12px;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-/* The Orange Logout Button from your images */
-.logout-glow-btn {
+/* 9. LOGOUT BUTTON */
+.nav-logout-btn {
   position: fixed;
   bottom: 30px;
-  right: 30px;
-  background: #ff4d2d;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 50px;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(255, 77, 45, 0.4);
+  right: 30px;          
+  background: transparent;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.3); 
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-logout-btn:hover {
+  background: #ff4d4d;
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+}
+
+/* 10. SUCCESS ANIMATION */
+.success-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.check-icon {
+  width: 80px; height: 80px;
+  background: #48bb78; color: white;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 3rem; margin-bottom: 20px;
 }

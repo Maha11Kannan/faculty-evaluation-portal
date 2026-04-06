@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 
 const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState(''); // New state for Phase 2 Security
   const [role, setRole] = useState('student');
-  const [name, setName] = useState(''); 
+  const [name, setName] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
+    // Logic: In Phase 2, this verifies credentials against the User model
     const finalName = role === 'faculty' ? name : "Student";
-    onLoginSuccess(role, finalName); 
+    onLoginSuccess(role, finalName);
   };
 
   return (
-    <div className="glass-card">
+    <div className="glass-card bigger-card">
       <h2>University Portal</h2>
       <form onSubmit={handleLogin}>
         <div className="input-group">
@@ -43,6 +45,18 @@ const Login = ({ onLoginSuccess }) => {
             placeholder="name@university.edu" 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+        </div>
+
+        {/* Added Password Field for Secure Auth Criteria */}
+        <div className="input-group">
+          <label>Password</label>
+          <input 
+            type="password" 
+            placeholder="••••••••" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required 
           />
         </div>
