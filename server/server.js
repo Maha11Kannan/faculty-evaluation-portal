@@ -1,4 +1,4 @@
-require('dotenv').config(); // Loads variables from your .env file
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,45 +6,50 @@ const Feedback = require('./models/Feedback');
 
 const app = express();
 
-// Middleware
-// Restricts access to only your React frontend for better security
-app.use(cors({ origin: "http://localhost:3000" })); 
+app.use(cors({ 
+  origin: ["http://localhost:3000", /\.vercel\.app$/],
+  credentials: true 
+}));
+
 app.use(express.json());
 
-// MongoDB Connection
-// Uses the URI from your .env file to connect to the mahalakshmikannan cluster
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected Successfully!"))
-  .catch(err => {
-    console.log("❌ Database Connection Error:");
-    console.error(err);
-  });
+  .then(() => console.log("✅ Connected to facultyDB"))
+  .catch(err => console.error("❌ DB Connection Error:", err));
 
-// POST: Store student feedback
-app.post('/api/feedback', async (req, res) => {
+// GET: Fetch feedback for a specific faculty (Case-Insensitive)
+app.get('/api/feedback/:facultyName', async (req, res) => {
   try {
-    const newFeedback = new Feedback(req.body);
-    await newFeedback.save();
-    res.status(200).send("Feedback Saved Successfully");
+    const name = req.params.facultyName;
+    // This regex finds the lowercase "kannan" from your screenshot!
+    const feedbacks = await Feedback.find({ 
+      facultyName: { $regex: new RegExp("^" + name + "$", "i") } 
+    });
+    res.json(feedbacks);
   } catch (err) {
-    console.error("Error saving feedback:", err);
-    res.status(500).send("Error saving data to database");
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
-// GET: Send feedback back to the frontend
+// Generic GET for all (optional)
 app.get('/api/feedback', async (req, res) => {
   try {
     const feedbacks = await Feedback.find();
     res.json(feedbacks);
   } catch (err) {
-    console.error("Error fetching feedback:", err);
-    res.status(500).send("Error retrieving data");
+    res.status(500).send("Error");
   }
 });
 
-// Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+app.post('/api/feedback', async (req, res) => {
+  try {
+    const newFeedback = new Feedback(req.body);
+    await newFeedback.save();
+    res.status(200).send("Saved Successfully");
+  } catch (err) {
+    res.status(500).send("Save Failed");
+  }
 });
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server on ${PORT}`));
