@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 });
 app.use(cors({ 
   origin: "https://faculty-evaluation-portal.vercel.app", 
+  methods: ["GET", "POST"],
   credentials: true 
 }));
 app.use(express.json());

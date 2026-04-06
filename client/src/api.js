@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-// This grabs the Render link you put in Vercel settings
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-
+// Hardcoded Render Link - No more localhost!
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: 'https://faculty-evaluation-portal.onrender.com/api',
 });
 
 export default api;
